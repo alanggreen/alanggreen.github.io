@@ -71,8 +71,12 @@ var main = new function() {
       $('.menuDropDown').remove();
       e.stopPropagation();
 
-      function setLang(lang) {
+      function setLang(lang, dir) {
         localStorage.setItem('LANG', lang);
+        if (!dir || dir == '' || dir == 'undefined') {
+          dir = 'ltr'
+        }
+        localStorage.setItem('DIRECTION', dir);
         window.location.reload();
       }
 
@@ -84,6 +88,11 @@ var main = new function() {
         {html: 'Français', line: false, callback: function() { setLang('fr'); }},
         {html: 'Nederlands', line: false, callback: function() { setLang('nl'); }},
         {html: 'tlhIngan', line: false, callback: function() { setLang('tlh'); }},
+        {html: 'עברית', line: false, callback: function() { setLang('he', "rtl"); }},
+        {html: 'العربية', line: false, callback: function() { setLang('ar', "rtl"); }},
+
+        
+        
       ];
 
       menuDropDown(self.$languageMenu, menuItems, {className: 'languageMenuDropDown', align: 'right'});
